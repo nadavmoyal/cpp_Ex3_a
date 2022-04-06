@@ -9,7 +9,6 @@ namespace zich {
     }
     
     Matrix::~Matrix(){
-
     }
     
     Matrix Matrix::operator+(Matrix const &m){
@@ -18,10 +17,14 @@ namespace zich {
         }
         int length= m.col*m.row; 
         vector <double> result((unsigned int)(length), 0.0);
-        for(int i=0;i<(m.row);i++){    
-            for(int j=0;j<(m.col);j++){
+        int i=0; 
+        int j=0;
+        while(i<m.row){
+            while(j<m.col){
                 result[(unsigned int)(col*i+j)]=m.matrix[(unsigned int)(col*i+j)]+this->matrix[(unsigned int)(col*i+j)];
+                j++;
             }
+            i++;
         }
         Matrix res(result,this->row, m.col);
 
@@ -29,19 +32,27 @@ namespace zich {
     } 
 
     Matrix &Matrix::operator++(){
-        for(int i=0;i<(this->row);i++){    
-            for(int j=0;j<(this->col);j++){
+        int i=0; 
+        int j=0;
+        while(i<this->row){
+            while(j<this->col){
                 this->matrix[(unsigned int)(col*i+j)]+=1;
+                j++;
             }
+            i++;
         }
         return *this;
     }
     Matrix &Matrix::operator++(const int num){
         Matrix result= Matrix(this->matrix,this->row,this->col);
-        for(int i=0;i<(this->row);i++){    
-            for(int j=0;j<(this->col);j++){
+        int i=0; 
+        int j=0;
+        while(i<this->row){
+            while(j<this->col){
                result.matrix[(unsigned int)(col*i+j)]+=1;
+               j++;
             }
+            i++;
         }
         return *this;
     }
@@ -50,29 +61,41 @@ namespace zich {
         if ( this->col!=m.col || this->row != m.row) {
              throw runtime_error("The matrices are not in the same size");
         }
-        for(int i=0;i<(m.row);i++){    
-            for(int j=0;j<(m.col);j++){
+        int i=0; 
+        int j=0;
+        while(i<m.row){
+            while(j<m.col){
                 this->matrix[(unsigned int)(col*i+j)]+=m.matrix[(unsigned int)(col*i+j)];
+                j++;
             }
+            i++;
         }
         return *this;
     } 
 
     Matrix &Matrix::operator--(){
-        for(int i=0;i<(this->row);i++){    
-            for(int j=0;j<(this->col);j++){
+        int i=0; 
+        int j=0;
+        while(i<this->row){
+            while(j<this->col){
                 this->matrix[(unsigned int)(col*i+j)]-=1;
+                j++;
             }
+            i++;
         }
         return *this;
     }
     
     Matrix &Matrix::operator--(const int num){
         Matrix result= Matrix(this->matrix,this->row,this->col);
-        for(int i=0;i<(this->row);i++){    
-            for(int j=0;j<(this->col);j++){
+        int i=0; 
+        int j=0;
+        while(i<this->row){
+            while(j<this->col){
                result.matrix[(unsigned int)(col*i+j)]-=1;
+               j++;
             }
+            i++;
         }
         return *this;
     }
@@ -80,10 +103,14 @@ namespace zich {
         if ( this->col!=m.col || this->row != m.row) {
              throw runtime_error("The matrices are not in the same size");
         }
-        for(int i=0;i<(m.row);i++){    
-            for(int j=0;j<(m.col);j++){
+        int i=0; 
+        int j=0;
+        while(i<m.row){
+            while(j<m.col){
                 this->matrix[(unsigned int)(col*i+j)]-=m.matrix[(unsigned int)(col*i+j)];
+                j++;
             }
+            i++;
         }
         return *this;
     } 
@@ -94,13 +121,16 @@ namespace zich {
         }
         int length= m.col*m.row; 
         vector <double> result((unsigned int)(length), 0.0);
-        for(int i=0;i<(m.row);i++){    
-            for(int j=0;j<(m.col);j++){
+               int i=0; 
+        int j=0;
+        while(i<m.row){
+            while(j<m.col){
                 result[(unsigned int)(col*i+j)]=this->matrix[(unsigned int)(col*i+j)]-m.matrix[(unsigned int)(col*i+j)];
+                j++;
             }
+            i++;
         }
         Matrix res(result,this->row, m.col);
-
         return res;
     } 
     
